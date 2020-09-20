@@ -145,12 +145,8 @@ UIScrollViewDelegate {
 			.errorContent
 			.drive(onNext: { [weak self] in
 				self?.errorView.configure(with: $0)
+				self?.error()
 			})
-			.disposed(by: disposeBag)
-		
-		output
-			.errorContent
-			.drive(onNext: { [weak self] _ in self?.error() })
 			.disposed(by: disposeBag)
 	}
 	
