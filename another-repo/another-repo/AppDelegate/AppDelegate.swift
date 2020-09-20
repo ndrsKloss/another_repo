@@ -36,6 +36,14 @@ UIApplicationDelegate {
 final class CoordinatorAppDelegate: NSObject, UIApplicationDelegate {
 	var window: UIWindow?
 	
+	private let coordinator: Coordinatable
+	
+	init(
+		coordinator: Coordinatable = TopSwiftReposCoordinator()
+	) {
+		self.coordinator = coordinator
+	}
+	
 	func application(
 		_ application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -44,13 +52,9 @@ final class CoordinatorAppDelegate: NSObject, UIApplicationDelegate {
 		
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 		
-		let navigationController = UINavigationController()
+		coordinator.start()
 		
-		TopSwiftReposCoordinator(
-			navigationController: navigationController
-		).start()
-		
-		window?.rootViewController = navigationController
+		window?.rootViewController = coordinator.navigationController
 		
 		return true
 	}

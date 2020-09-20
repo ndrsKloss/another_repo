@@ -22,14 +22,6 @@ TopStarSwiftFetchable {
 			.observeOn(OperationQueueScheduler(operationQueue: operationQueue))
 			.map { [parseNextURL] response -> TopStartSwiftResponse in
 				
-				if response.0.statusCode == 403 {
-					return .failure(.githubLimitReached)
-				}
-				
-				if !(200 ..< 300 ~= response.0.statusCode) {
-					return .failure(.callFailed)
-				}
-				
 				let topStartSwiftModel = try JSONDecoder().decode(TopStarSwiftModel.self, from: response.data)
 				
 				let nextURL = try parseNextURL(response.0)

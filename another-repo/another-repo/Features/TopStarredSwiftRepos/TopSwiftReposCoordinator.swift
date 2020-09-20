@@ -3,16 +3,10 @@ import UIKit
 final class TopSwiftReposCoordinator:
 Coordinatable {
 	
-	private let navigationController: UINavigationController?
-	
-	init(
-		navigationController: UINavigationController?
-	) {
-		self.navigationController = navigationController
-	}
+	let navigationController: UINavigationController = UINavigationController()
 	
 	func start() {
-		navigationController?.pushViewController(
+		navigationController.pushViewController(
 			TopSwiftReposViewController(),
 			animated: true
 		)
