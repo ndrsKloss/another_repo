@@ -6,6 +6,7 @@ target 'another-repo' do
   # Pods for another-repo
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
+  pod 'RxSwiftExt', '~> 5'
 
   target 'another-repoTests' do
     pod 'RxBlocking', '~> 5'

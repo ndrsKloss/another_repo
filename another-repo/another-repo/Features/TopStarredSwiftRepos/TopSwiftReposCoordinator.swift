@@ -1,7 +1,7 @@
 import UIKit
 
 final class TopSwiftReposCoordinator:
-Coordinator {
+Coordinatable {
 	
 	private let navigationController: UINavigationController?
 	
@@ -12,13 +12,8 @@ Coordinator {
 	}
 	
 	func start() {
-		let viewModel = TopSwiftReposViewModel()
-		let viewController = TopSwiftReposViewController(
-			viewModel: viewModel
-		)
-		
 		navigationController?.pushViewController(
-			viewController,
+			TopSwiftReposViewController(),
 			animated: true
 		)
 	}
