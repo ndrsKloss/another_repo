@@ -1,7 +1,7 @@
 import Foundation
 import RxSwift
 
-typealias TopStartSwiftResponse = (repositories: TopStarSwiftModel, nextURL: URL?) //Result<(repositories: TopStarSwiftModel, nextURL: URL?), Error>
+typealias TopStartSwiftResponse = (repositories: TopStarSwiftModel, nextURL: URL?)
 
 struct TopStarSwiftRepository:
 TopStarSwiftFetchable {
