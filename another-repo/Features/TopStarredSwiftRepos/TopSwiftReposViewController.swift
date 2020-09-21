@@ -116,6 +116,16 @@ UIScrollViewDelegate {
 			return cell
 		}
 		
+        /*
+         Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window).
+         
+         Issue:
+         https://github.com/RxSwiftCommunity/RxDataSources/issues/331
+         
+         Correção:
+         https://github.com/ReactiveX/RxSwift/pull/2076 - RxSwift 6.0.0-beta.1
+         */
+		
 		output
 			.repositories
 			.drive(tableView.rx.items)(configureCell)
