@@ -26,7 +26,6 @@ TopStarSwiftFetchable {
 				
 				let nextURL = try parseNextURL(response.0)
 				
-				//return .success((repositories: topStartSwiftModel, nextURL: nextURL))
 				return (repositories: topStartSwiftModel, nextURL: nextURL)
 		}
 	}
