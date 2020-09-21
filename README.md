@@ -8,4 +8,4 @@ Xcode 11.7 and Swift 5
 1. `xed .`
 
 ### Run slather
-1. bundle exec fastlane tests
+1. `bundle exec fastlane tests`
