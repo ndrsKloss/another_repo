@@ -16,11 +16,11 @@ ViewModelType {
 	}
 	
 	private let repository: AuthorImageFetchable
-	private let repositoryName: String
-	private let repositoryDescription: String?
-	private let repositoryStargazersCount: Int
-	private let ownerName: String
-	private let avatarURL: String
+	let repositoryName: String
+	let repositoryDescription: String?
+	let repositoryStargazersCount: Int
+	let ownerName: String
+	let avatarURL: String
 	
 	init(
 		repository: AuthorImageFetchable = AuthorImageRepository(),
@@ -58,3 +58,19 @@ ViewModelType {
 			.catchError { _ in .empty() }
 	}
 }
+
+extension TopStarSwiftRepositoryTableViewCellModel:
+Equatable { }
+
+func == (
+	lhs: TopStarSwiftRepositoryTableViewCellModel,
+	rhs: TopStarSwiftRepositoryTableViewCellModel
+) -> Bool {
+	lhs.repositoryName == rhs.repositoryName &&
+		lhs.repositoryDescription == rhs.repositoryDescription &&
+		lhs.repositoryStargazersCount == rhs.repositoryStargazersCount &&
+		lhs.ownerName == rhs.ownerName &&
+		lhs.avatarURL == rhs.avatarURL
+}
+
+

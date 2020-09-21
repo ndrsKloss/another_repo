@@ -1,10 +1,10 @@
+@testable import another_repo
 import XCTest
-@testable
-import another_repo
 
-final class CoordinatorAppDelegateTests: XCTestCase {
+final class CoordinatorAppDelegateTests:
+XCTestCase {
   
-  func testCoordinator() throws {
+  func test_coordinatorCalled() throws {
     let (sut, fields) = makeSut()
     
     _ = sut.application(

@@ -1,7 +1,7 @@
 import Foundation
 import RxSwift
 
-typealias TopStartSwiftResponse = Result<(repositories: TopStarSwiftModel, nextURL: URL?), TopStarSwiftRepositoryError>
+typealias TopStartSwiftResponse = (repositories: TopStarSwiftModel, nextURL: URL?) //Result<(repositories: TopStarSwiftModel, nextURL: URL?), Error>
 
 struct TopStarSwiftRepository:
 TopStarSwiftFetchable {
@@ -26,7 +26,8 @@ TopStarSwiftFetchable {
 				
 				let nextURL = try parseNextURL(response.0)
 				
-				return .success((repositories: topStartSwiftModel, nextURL: nextURL))
+				//return .success((repositories: topStartSwiftModel, nextURL: nextURL))
+				return (repositories: topStartSwiftModel, nextURL: nextURL)
 		}
 	}
 }

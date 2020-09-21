@@ -50,10 +50,6 @@ ViewModelType {
 		}
 		.map { [weak self] in try self?.unwrapResponse($0) }
 		.unwrap()
-		.map { [weak self] repositories -> [TopStarSwiftModel.Repository] in
-			guard let self = self else { return [] }
-			return self.resetRepositories(repositories)
-		}
 		
 		let pullToRefreshReposPageTracker = ActivityIndicator()
 		
@@ -73,6 +69,7 @@ ViewModelType {
 		let succReposPageTracker = ActivityIndicator()
 		
 		let succReposPage = input.nearBottom
+			.skip(2)
 			.asObservable()
 			.map { [weak self] _ -> URL? in
 				guard let self = self else { return nil }
@@ -85,13 +82,12 @@ ViewModelType {
 		}
 		.map { [weak self] in try self?.unwrapResponse($0) }
 		.unwrap()
+		.map { [weak self] repositories -> [TopStarSwiftModel.Repository] in
+					guard let self = self else { return [] }
+					return self.updateRepositories(repositories)
+		}
 		
 		let repositories = Observable.merge(firstReposPage, succReposPage, pullToRefreshPage)
-			.share()
-			.map { [weak self] repositories -> [TopStarSwiftModel.Repository] in
-				guard let self = self else { return [] }
-				return self.updateRepositories(repositories)
-		}
 		.map { $0.map { TopStarSwiftRepositoryTableViewCellModel($0) } }
 		.asDriver(onErrorJustReturn: [])
 		
@@ -104,13 +100,8 @@ ViewModelType {
 			.asDriver(onErrorDriveWith: .empty())
 		
 		let errorContent = errorTracker
-			.map { _ in
-				TopStarSwiftRepositoryErrorContent(
-					errorMessage: "Something went wrong.",
-					buttonTitle: "Try Again"
-				)
-		}
-		.asDriver(onErrorDriveWith: .empty())
+			.map { _ in TopStarSwiftRepositoryErrorContent.init() }
+			.asDriver(onErrorDriveWith: .empty())
 		
 		return Output(
 			repositories: repositories,
@@ -130,19 +121,14 @@ ViewModelType {
 		repository.fetchTopSwiftStarRepos(URL)
 			.trackError(errorTracker)
 			.trackActivity(tracker)
-			.catchErrorJustComplete()
+			.catchError { _ in return .empty() }
 	}
 	
 	private func unwrapResponse(
 		_ response: TopStartSwiftResponse
 	)  throws -> [TopStarSwiftModel.Repository] {
-		switch response {
-			case .success((let repositories, let nextURL)):
-				self.nextURL = nextURL
-				return repositories.items
-			case .failure(let error):
-				throw(error)
-		}
+		self.nextURL = response.nextURL
+		return response.repositories.items
 	}
 	
 	private func catchNextURL() -> URL? {

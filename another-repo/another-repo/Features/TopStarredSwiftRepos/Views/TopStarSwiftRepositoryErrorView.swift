@@ -3,6 +3,14 @@ import UIKit
 struct TopStarSwiftRepositoryErrorContent {
 	let errorMessage: String
 	let buttonTitle: String
+	
+	init(
+		errorMessage: String = "Something went wrong.",
+		buttonTitle: String = "Try Again"
+	) {
+		self.errorMessage = errorMessage
+		self.buttonTitle = buttonTitle
+	}
 }
 
 final class TopStarSwiftRepositoryErrorView:

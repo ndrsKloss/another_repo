@@ -1,10 +1,9 @@
+@testable import another_repo
 import XCTest
-@testable
-import another_repo
 
 final class AppDelegateTest: XCTestCase {
   
-  func testServicesCalled() {
+  func test_servicesCalled() {
     let (sut, fields) = makeSut()
     
     _ = sut.application(
