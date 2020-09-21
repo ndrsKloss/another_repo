@@ -20,3 +20,6 @@ xcuserdata/
 *.app.dSYM.zip
 
 .build/
+
+fastlane/report.xml
+fastlane/test_output
