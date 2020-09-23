@@ -31,6 +31,7 @@ UIScrollViewDelegate {
 	}(UIActivityIndicatorView(style: .medium))
 	
 	private let tableView: UITableView = {
+		$0.showsVerticalScrollIndicator = false
 		$0.backgroundColor = .systemGray5
 		$0.tableFooterView = UIView()
 		$0.translatesAutoresizingMaskIntoConstraints = false
