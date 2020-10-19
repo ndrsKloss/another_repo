@@ -123,7 +123,7 @@ UIScrollViewDelegate {
          Issue:
          https://github.com/RxSwiftCommunity/RxDataSources/issues/331
          
-         Correção:
+         Fix:
          https://github.com/ReactiveX/RxSwift/pull/2076 - RxSwift 6.0.0-beta.1
          */
 		
