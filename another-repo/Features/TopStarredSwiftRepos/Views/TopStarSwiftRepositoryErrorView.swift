@@ -13,8 +13,7 @@ struct TopStarSwiftRepositoryErrorContent {
 	}
 }
 
-final class TopStarSwiftRepositoryErrorView:
-UIView {
+final class TopStarSwiftRepositoryErrorView: UIView {
 	
 	let messageLabel: UILabel = {
 		$0.font = UIFont.systemFont(ofSize: .mediumx, weight: .light)

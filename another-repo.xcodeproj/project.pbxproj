@@ -11,6 +11,8 @@
 		521BF7DD25179088005C0153 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521BF7DC25179088005C0153 /* AppDelegateTests.swift */; };
 		521BF7DF251792A5005C0153 /* CoordinatorAppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521BF7DE251792A5005C0153 /* CoordinatorAppDelegateTests.swift */; };
 		521BF7E32517B9E1005C0153 /* TopSwiftReposViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521BF7E22517B9E1005C0153 /* TopSwiftReposViewModelTests.swift */; };
+		52366129253E210700BAF427 /* NextURLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52366128253E210700BAF427 /* NextURLParser.swift */; };
+		5236612B253E3B2800BAF427 /* WebLinkParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236612A253E3B2800BAF427 /* WebLinkParseable.swift */; };
 		52D3E4DA251530BC00B637CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4D9251530BC00B637CD /* AppDelegate.swift */; };
 		52D3E4DE251530BC00B637CD /* TopSwiftReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4DD251530BC00B637CD /* TopSwiftReposViewController.swift */; };
 		52D3E4E0251530C000B637CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D3E4DF251530C000B637CD /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		521BF7DC25179088005C0153 /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		521BF7DE251792A5005C0153 /* CoordinatorAppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorAppDelegateTests.swift; sourceTree = "<group>"; };
 		521BF7E22517B9E1005C0153 /* TopSwiftReposViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSwiftReposViewModelTests.swift; sourceTree = "<group>"; };
+		52366128253E210700BAF427 /* NextURLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextURLParser.swift; sourceTree = "<group>"; };
+		5236612A253E3B2800BAF427 /* WebLinkParseable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLinkParseable.swift; sourceTree = "<group>"; };
 		52D3E4D6251530BC00B637CD /* another-repo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "another-repo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D3E4D9251530BC00B637CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D3E4DD251530BC00B637CD /* TopSwiftReposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSwiftReposViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,14 @@
 			path = TopStarredSwiftRepos;
 			sourceTree = "<group>";
 		};
+		52366127253E209E00BAF427 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				52366128253E210700BAF427 /* NextURLParser.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		52D3E4CD251530BC00B637CD = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +160,7 @@
 		52D3E4D8251530BC00B637CD /* another-repo */ = {
 			isa = PBXGroup;
 			children = (
+				52366127253E209E00BAF427 /* Util */,
 				52D3E5002515424200B637CD /* AppDelegate */,
 				52E1179F2516E7D5000114CF /* RxSwift+Utils */,
 				52D3E515251572FF00B637CD /* Extensions */,
@@ -215,6 +228,7 @@
 				52D3E5042515446700B637CD /* CoordinatorProtocol.swift */,
 				52D3E50925154D8A00B637CD /* ViewModelType.swift */,
 				52D3E510251563DC00B637CD /* RepositoryProtocol.swift */,
+				5236612A253E3B2800BAF427 /* WebLinkParseable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -474,6 +488,7 @@
 			files = (
 				52D3E4DA251530BC00B637CD /* AppDelegate.swift in Sources */,
 				52D3E5052515446700B637CD /* CoordinatorProtocol.swift in Sources */,
+				5236612B253E3B2800BAF427 /* WebLinkParseable.swift in Sources */,
 				52D3E51E251655E900B637CD /* TopStarSwiftModel.swift in Sources */,
 				52D3E5172515730B00B637CD /* NSError+Error.swift in Sources */,
 				52D3E4FF251541B700B637CD /* main.swift in Sources */,
@@ -493,6 +508,7 @@
 				521BF7DA2516FD3E005C0153 /* TopStarSwiftRepositoryErrorView.swift in Sources */,
 				52E117982516C2E3000114CF /* AuthorImageRepository.swift in Sources */,
 				52E117A12516E800000114CF /* ErrorTracker.swift in Sources */,
+				52366129253E210700BAF427 /* NextURLParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

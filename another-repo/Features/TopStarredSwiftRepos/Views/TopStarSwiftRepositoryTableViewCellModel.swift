@@ -59,8 +59,7 @@ ViewModelType {
 	}
 }
 
-extension TopStarSwiftRepositoryTableViewCellModel:
-Equatable { }
+extension TopStarSwiftRepositoryTableViewCellModel: Equatable { }
 
 func == (
 	lhs: TopStarSwiftRepositoryTableViewCellModel,

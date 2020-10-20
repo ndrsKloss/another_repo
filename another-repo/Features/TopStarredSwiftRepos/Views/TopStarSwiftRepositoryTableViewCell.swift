@@ -1,8 +1,7 @@
 import UIKit
 import RxSwift
 
-final class TopStarSwiftRepositoryTableViewCell:
-UITableViewCell {
+final class TopStarSwiftRepositoryTableViewCell: UITableViewCell {
 	
 	typealias Input = TopStarSwiftRepositoryTableViewCellModel.Input
 	

@@ -3,8 +3,7 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-final class TopSwiftReposViewModel:
-ViewModelType {
+final class TopSwiftReposViewModel: ViewModelType {
 	
 	struct Input {
 		let viewWillAppear: ControlEvent<Bool>
