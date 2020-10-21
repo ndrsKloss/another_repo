@@ -9,7 +9,7 @@ RepositoryOperationScheduable {
 	
 	var scheduler: OperationQueueScheduler {
 		let operationQueue = OperationQueue()
-		operationQueue.maxConcurrentOperationCount = 1
+		operationQueue.maxConcurrentOperationCount = 2
 		operationQueue.qualityOfService = QualityOfService.userInitiated
 		return OperationQueueScheduler(operationQueue: operationQueue)
 	}

@@ -23,15 +23,11 @@ final class TopSwiftReposViewModel: ViewModelType {
 	private var nextURL: URL?
 	private var repositories = [TopStarSwiftModel.Repository]()
 	
-	init(
-		repository: TopStarSwiftFetchable = TopStarSwiftRepository()
-	) {
+	init(repository: TopStarSwiftFetchable = TopStarSwiftRepository()) {
 		self.repository = repository
 	}
 	
-	func transform(
-		input: Input
-	) -> Output {
+	func transform(input: Input) -> Output {
 		
 		let firstReposPageTracker = ActivityIndicator()
 		
@@ -50,25 +46,16 @@ final class TopSwiftReposViewModel: ViewModelType {
 		let succReposPageTracker = ActivityIndicator()
 		
 		let succReposPage = input.nearBottom
-			.skip(2)
 			.asObservable()
-			.map { [catchNextURL] _ in
-				catchNextURL()
-			}
+			.map { [getNextURL] _ in getNextURL() }
 			.distinctUntilChanged()
-			.flatMapLatest { [weak self] URL -> Observable<TopStartSwiftResponse> in
-				guard let self = self else { return .empty() }
-				return self.fetchRepos(URL: URL, succReposPageTracker, errorTracker)
-			}
+			.flatMapLatest { [fetchRepos] in fetchRepos($0, succReposPageTracker, errorTracker) }
 			.map { [unwrapResponse] in try unwrapResponse($0) }
 			.unwrap()
-			.map { [updateRepositories] in
-					updateRepositories($0)
-			}
 		
 		let repositories = Observable.merge(firstReposPage, succReposPage)
-		.map { $0.map { TopStarSwiftRepositoryTableViewCellModel($0) } }
-		.asDriver(onErrorJustReturn: [])
+			.map { $0.map { TopStarSwiftRepositoryTableViewCellModel($0) } }
+			.asDriver(onErrorJustReturn: [])
 		
 		let normalLoad = firstReposPageTracker
 			.filter { $0 }
@@ -99,24 +86,33 @@ final class TopSwiftReposViewModel: ViewModelType {
 		repository.fetchTopSwiftStarRepos(URL)
 			.trackError(errorTracker)
 			.trackActivity(tracker)
-			.catchError { _ in return .empty() }
+			.catchError { _ in .empty() }
 	}
 	
 	private func unwrapResponse(
 		_ response: TopStartSwiftResponse
 	)  throws -> [TopStarSwiftModel.Repository] {
-		self.nextURL = response.nextURL
-		return response.repositories.items
+		storeNextURL(response.nextURL)
+		updateRepositories(response.repositories.items)
+		return getRepositories()
 	}
 	
-	private func catchNextURL() -> URL? {
+	private func storeNextURL(_ URL: URL?) {
+		nextURL = URL
+	}
+	
+	private func getNextURL() -> URL? {
 		return nextURL
 	}
 	
 	private func updateRepositories(
 		_ repositories: [TopStarSwiftModel.Repository]
-	) -> [TopStarSwiftModel.Repository] {
+	) {
 		self.repositories += repositories
-		return self.repositories
+	}
+	
+	private func getRepositories()
+		-> [TopStarSwiftModel.Repository] {
+		self.repositories
 	}
 }
