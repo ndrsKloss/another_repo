@@ -39,7 +39,7 @@ final class CoordinatorAppDelegate: NSObject, UIApplicationDelegate {
 	private let coordinator: Coordinatable
 	
 	init(
-		coordinator: Coordinatable = TopSwiftReposCoordinator()
+		coordinator: Coordinatable = FirstCoordinator()
 	) {
 		self.coordinator = coordinator
 	}

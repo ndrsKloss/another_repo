@@ -1,7 +1,6 @@
 import UIKit
 
-final class TopSwiftReposCoordinator:
-Coordinatable {
+final class TopSwiftReposCoordinator: Coordinatable {
 	
 	let navigationController: UINavigationController
 	

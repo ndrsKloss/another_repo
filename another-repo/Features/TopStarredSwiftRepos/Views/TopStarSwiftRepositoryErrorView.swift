@@ -23,13 +23,7 @@ final class TopStarSwiftRepositoryErrorView: UIView {
 	}(UILabel())
 	
 	let button: UIButton = {
-		$0.contentEdgeInsets = UIEdgeInsets(top: .small, left: .small, bottom: .small, right: .small)
-		$0.layer.cornerRadius = .smallx
-		$0.layer.masksToBounds = true
-		$0.titleLabel?.font = UIFont.systemFont(ofSize: .mediumx, weight: .medium)
-		$0.tintColor = .black
-		$0.backgroundColor = .white
-		$0.translatesAutoresizingMaskIntoConstraints = false
+		$0.apply(style: .error)
 		return $0
 	}(UIButton(type: .system))
 	

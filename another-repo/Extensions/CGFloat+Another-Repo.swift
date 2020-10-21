@@ -1,6 +1,8 @@
 import CoreGraphics
 
 extension CGFloat {
+	static var smallxx: CGFloat { 1.0 }
+	
 	static var smallx: CGFloat { 4.0 }
 	
 	static var small: CGFloat { 8.0 }
