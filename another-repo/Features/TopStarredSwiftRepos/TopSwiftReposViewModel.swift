@@ -40,51 +40,46 @@ final class TopSwiftReposViewModel: ViewModelType {
 		let errorTracker = ErrorTracker()
 		
 		let firstReposPage = Observable.merge(
-			input.viewWillAppear.map { _ in Void() },
+			input.viewWillAppear.map { _ in () },
 			input.retryTap.asObservable()
-		)
-			.flatMapLatest { [weak self] _ -> Observable<TopStartSwiftResponse> in
-				guard let self = self else { return .empty() }
-				return self.fetchRepos(firstReposPageTracker, errorTracker)
-		}
-		.map { [weak self] in try self?.unwrapResponse($0) }
-		.unwrap()
+			)
+			.flatMapLatest { [fetchRepos] _ in
+				fetchRepos(EndpointsRepository.topStarsSwift, firstReposPageTracker, errorTracker)
+			}
+			.map { [unwrapResponse] in try unwrapResponse($0) }
+			.unwrap()
 		
 		let pullToRefreshReposPageTracker = ActivityIndicator()
 		
 		let pullToRefreshPage = input.pullToRefresh
 			.asObservable()
-			.flatMapLatest { [weak self] _ -> Observable<TopStartSwiftResponse> in
-				guard let self = self else { return .empty() }
-				return self.fetchRepos(pullToRefreshReposPageTracker, errorTracker)
-		}
-		.map { [weak self] in try self?.unwrapResponse($0) }
-		.unwrap()
-		.map { [weak self] repositories -> [TopStarSwiftModel.Repository] in
-			guard let self = self else { return [] }
-			return self.resetRepositories(repositories)
-		}
+			.flatMapLatest { [fetchRepos] _ in
+				fetchRepos(EndpointsRepository.topStarsSwift, pullToRefreshReposPageTracker, errorTracker)
+			}
+			.map { [unwrapResponse] in try unwrapResponse($0) }
+			.unwrap()
+			.map { [resetRepositories] repositories in
+				resetRepositories(repositories)
+			}
 		
 		let succReposPageTracker = ActivityIndicator()
 		
 		let succReposPage = input.nearBottom
 			.skip(2)
 			.asObservable()
-			.map { [weak self] _ -> URL? in
-				guard let self = self else { return nil }
-				return self.catchNextURL()
-		}
-		.distinctUntilChanged()
-		.flatMapLatest { [weak self] URL -> Observable<TopStartSwiftResponse> in
-			guard let self = self else { return .empty() }
-			return self.fetchRepos(URL: URL, succReposPageTracker, errorTracker)
-		}
-		.map { [weak self] in try self?.unwrapResponse($0) }
-		.unwrap()
-		.map { [weak self] repositories -> [TopStarSwiftModel.Repository] in
-					guard let self = self else { return [] }
-					return self.updateRepositories(repositories)
-		}
+			.map { [catchNextURL] _ in
+				catchNextURL()
+			}
+			.distinctUntilChanged()
+			.flatMapLatest { [weak self] URL -> Observable<TopStartSwiftResponse> in
+				guard let self = self else { return .empty() }
+				return self.fetchRepos(URL: URL, succReposPageTracker, errorTracker)
+			}
+			.map { [unwrapResponse] in try unwrapResponse($0) }
+			.unwrap()
+			.map { [updateRepositories] in
+					updateRepositories($0)
+			}
 		
 		let repositories = Observable.merge(firstReposPage, succReposPage, pullToRefreshPage)
 		.map { $0.map { TopStarSwiftRepositoryTableViewCellModel($0) } }
@@ -113,7 +108,7 @@ final class TopSwiftReposViewModel: ViewModelType {
 	}
 	
 	private func fetchRepos(
-		URL: URL? = URL(string: "https://api.github.com/search/repositories?q=language:swift&sort=stars"),
+		URL: URL?,
 		_ tracker: ActivityIndicator,
 		_ errorTracker: ErrorTracker
 	) -> Observable<TopStartSwiftResponse> {

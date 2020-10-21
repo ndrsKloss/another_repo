@@ -21,6 +21,7 @@
 		52366139253FAAC500BAF427 /* Styleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52366138253FAAC500BAF427 /* Styleable.swift */; };
 		5236613C253FAD3200BAF427 /* UIButton+Styleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236613B253FAD3200BAF427 /* UIButton+Styleable.swift */; };
 		5236613E253FB4AF00BAF427 /* UIColor+Another-Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236613D253FB4AF00BAF427 /* UIColor+Another-Repo.swift */; };
+		52366140253FBDB000BAF427 /* EndpointsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236613F253FBDB000BAF427 /* EndpointsRepository.swift */; };
 		52D3E4DA251530BC00B637CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4D9251530BC00B637CD /* AppDelegate.swift */; };
 		52D3E4DE251530BC00B637CD /* TopSwiftReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4DD251530BC00B637CD /* TopSwiftReposViewController.swift */; };
 		52D3E4E0251530C000B637CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D3E4DF251530C000B637CD /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		52366138253FAAC500BAF427 /* Styleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styleable.swift; sourceTree = "<group>"; };
 		5236613B253FAD3200BAF427 /* UIButton+Styleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Styleable.swift"; sourceTree = "<group>"; };
 		5236613D253FB4AF00BAF427 /* UIColor+Another-Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Another-Repo.swift"; sourceTree = "<group>"; };
+		5236613F253FBDB000BAF427 /* EndpointsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointsRepository.swift; sourceTree = "<group>"; };
 		52D3E4D6251530BC00B637CD /* another-repo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "another-repo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D3E4D9251530BC00B637CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D3E4DD251530BC00B637CD /* TopSwiftReposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSwiftReposViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				52E117972516C2E3000114CF /* AuthorImageRepository.swift */,
+				5236613F253FBDB000BAF427 /* EndpointsRepository.swift */,
 				52D3E5122515654800B637CD /* TopStarSwiftRepository.swift */,
 			);
 			path = Repository;
@@ -518,6 +521,7 @@
 				52D3E51E251655E900B637CD /* TopStarSwiftModel.swift in Sources */,
 				52D3E5172515730B00B637CD /* NSError+Error.swift in Sources */,
 				52366133253F9CB500BAF427 /* FirstViewModel.swift in Sources */,
+				52366140253FBDB000BAF427 /* EndpointsRepository.swift in Sources */,
 				52D3E4FF251541B700B637CD /* main.swift in Sources */,
 				52366139253FAAC500BAF427 /* Styleable.swift in Sources */,
 				52E117962516AC88000114CF /* UITableView+Rx.swift in Sources */,
