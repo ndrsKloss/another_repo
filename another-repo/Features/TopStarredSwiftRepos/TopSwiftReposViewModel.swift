@@ -7,7 +7,6 @@ final class TopSwiftReposViewModel: ViewModelType {
 	
 	struct Input {
 		let viewWillAppear: ControlEvent<Bool>
-		let pullToRefresh: ControlEvent<Void>
 		let retryTap: ControlEvent<Void>
 		let nearBottom: Signal<Void>
 	}
@@ -17,7 +16,6 @@ final class TopSwiftReposViewModel: ViewModelType {
 		let success: Driver<Void>
 		let normalLoad: Driver<Bool>
 		let succLoad: Driver<Bool>
-		let pullToRefreshLoad: Driver<Bool>
 		let errorContent: Driver<TopStarSwiftRepositoryErrorContent>
 	}
 	
@@ -49,19 +47,6 @@ final class TopSwiftReposViewModel: ViewModelType {
 			.map { [unwrapResponse] in try unwrapResponse($0) }
 			.unwrap()
 		
-		let pullToRefreshReposPageTracker = ActivityIndicator()
-		
-		let pullToRefreshPage = input.pullToRefresh
-			.asObservable()
-			.flatMapLatest { [fetchRepos] _ in
-				fetchRepos(EndpointsRepository.topStarsSwift, pullToRefreshReposPageTracker, errorTracker)
-			}
-			.map { [unwrapResponse] in try unwrapResponse($0) }
-			.unwrap()
-			.map { [resetRepositories] repositories in
-				resetRepositories(repositories)
-			}
-		
 		let succReposPageTracker = ActivityIndicator()
 		
 		let succReposPage = input.nearBottom
@@ -81,7 +66,7 @@ final class TopSwiftReposViewModel: ViewModelType {
 					updateRepositories($0)
 			}
 		
-		let repositories = Observable.merge(firstReposPage, succReposPage, pullToRefreshPage)
+		let repositories = Observable.merge(firstReposPage, succReposPage)
 		.map { $0.map { TopStarSwiftRepositoryTableViewCellModel($0) } }
 		.asDriver(onErrorJustReturn: [])
 		
@@ -102,7 +87,6 @@ final class TopSwiftReposViewModel: ViewModelType {
 			success: success,
 			normalLoad: normalLoad,
 			succLoad: succReposPageTracker.asDriver(onErrorJustReturn: false),
-			pullToRefreshLoad: pullToRefreshReposPageTracker.asDriver(onErrorJustReturn: false),
 			errorContent: errorContent
 		)
 	}
@@ -127,13 +111,6 @@ final class TopSwiftReposViewModel: ViewModelType {
 	
 	private func catchNextURL() -> URL? {
 		return nextURL
-	}
-	
-	private func resetRepositories(
-		_ repositories: [TopStarSwiftModel.Repository]
-	) -> [TopStarSwiftModel.Repository] {
-		self.repositories = repositories
-		return self.repositories
 	}
 	
 	private func updateRepositories(

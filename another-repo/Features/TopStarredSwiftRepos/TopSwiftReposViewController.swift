@@ -17,8 +17,6 @@ UIScrollViewDelegate {
 		return $0
 	}(TopStarSwiftRepositoryErrorView())
 	
-	private let refreshControl = UIRefreshControl()
-	
 	private let activityView: UIActivityIndicatorView = {
 		$0.translatesAutoresizingMaskIntoConstraints = false
 		$0.hidesWhenStopped = true
@@ -70,8 +68,6 @@ UIScrollViewDelegate {
 	private func setupTableView() {
 		view.addSubview(tableView)
 		
-		tableView.addSubview(refreshControl)
-		
 		NSLayoutConstraint.activate([
 			tableView.topAnchor.constraint(equalTo: view.topAnchor),
 			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -101,7 +97,6 @@ UIScrollViewDelegate {
 	private func bind() {
 		let intput = Input(
 			viewWillAppear: rx.viewWillAppear,
-			pullToRefresh: refreshControl.rx.controlEvent(.valueChanged),
 			retryTap: errorView.button.rx.tap,
 			nearBottom: tableView.rx.nearBottom
 		)
@@ -145,11 +140,6 @@ UIScrollViewDelegate {
 		output
 			.succLoad
 			.drive(navigationBarActivityView.rx.isAnimating)
-			.disposed(by: disposeBag)
-		
-		output
-			.pullToRefreshLoad
-			.drive(refreshControl.rx.isRefreshing)
 			.disposed(by: disposeBag)
 		
 		output
