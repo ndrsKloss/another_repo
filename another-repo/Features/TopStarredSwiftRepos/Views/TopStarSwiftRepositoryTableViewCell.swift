@@ -37,7 +37,7 @@ final class TopStarSwiftRepositoryTableViewCell: UITableViewCell {
 	}(UILabel())
 	
 	private let starImageView: UIImageView = {
-		$0.image = UIImage(String: Constants.starImage)
+		$0.image = UIImage(named: Constants.starImage)
 		$0.tintColor = .darkGray
 		$0.contentMode = .scaleAspectFit
 		$0.translatesAutoresizingMaskIntoConstraints = false
