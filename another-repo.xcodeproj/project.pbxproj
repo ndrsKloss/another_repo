@@ -26,6 +26,8 @@
 		529811412541B41C00580D2B /* LastCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529811402541B41C00580D2B /* LastCoordinator.swift */; };
 		529811432541B44B00580D2B /* LastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529811422541B44B00580D2B /* LastViewController.swift */; };
 		529811452541B45E00580D2B /* LastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529811442541B45E00580D2B /* LastViewModel.swift */; };
+		529811472541C0E800580D2B /* NaiveCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529811462541C0E800580D2B /* NaiveCache.swift */; };
+		529811492541C0FE00580D2B /* NaiveCachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529811482541C0FE00580D2B /* NaiveCachable.swift */; };
 		52D3E4DA251530BC00B637CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4D9251530BC00B637CD /* AppDelegate.swift */; };
 		52D3E4DE251530BC00B637CD /* TopSwiftReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4DD251530BC00B637CD /* TopSwiftReposViewController.swift */; };
 		52D3E4E0251530C000B637CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D3E4DF251530C000B637CD /* Assets.xcassets */; };
@@ -83,6 +85,8 @@
 		529811402541B41C00580D2B /* LastCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastCoordinator.swift; sourceTree = "<group>"; };
 		529811422541B44B00580D2B /* LastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewController.swift; sourceTree = "<group>"; };
 		529811442541B45E00580D2B /* LastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewModel.swift; sourceTree = "<group>"; };
+		529811462541C0E800580D2B /* NaiveCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaiveCache.swift; sourceTree = "<group>"; };
+		529811482541C0FE00580D2B /* NaiveCachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveCachable.swift; sourceTree = "<group>"; };
 		52D3E4D6251530BC00B637CD /* another-repo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "another-repo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D3E4D9251530BC00B637CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D3E4DD251530BC00B637CD /* TopSwiftReposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSwiftReposViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			children = (
 				52E1179B2516E79A000114CF /* ActivityIndicator.swift */,
 				52E117A02516E800000114CF /* ErrorTracker.swift */,
+				529811462541C0E800580D2B /* NaiveCache.swift */,
 				52366128253E210700BAF427 /* NextURLParser.swift */,
 				52366136253FA21D00BAF427 /* Pilot.swift */,
 			);
@@ -276,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				52D3E5042515446700B637CD /* Coordinatable.swift */,
+				529811482541C0FE00580D2B /* NaiveCachable.swift */,
 				52D3E510251563DC00B637CD /* RepositoryProtocol.swift */,
 				5236612C253E6D6800BAF427 /* RepositoryOperationScheduable.swift */,
 				52366138253FAAC500BAF427 /* Styleable.swift */,
@@ -539,11 +545,13 @@
 				5236613E253FB4AF00BAF427 /* UIColor+Another-Repo.swift in Sources */,
 				5236612B253E3B2800BAF427 /* WebLinkParseable.swift in Sources */,
 				5236613C253FAD3200BAF427 /* UIButton+Styleable.swift in Sources */,
+				529811492541C0FE00580D2B /* NaiveCachable.swift in Sources */,
 				52D3E51E251655E900B637CD /* TopStarSwiftModel.swift in Sources */,
 				52D3E5172515730B00B637CD /* NSError+Error.swift in Sources */,
 				52366133253F9CB500BAF427 /* FirstViewModel.swift in Sources */,
 				52366140253FBDB000BAF427 /* EndpointsRepository.swift in Sources */,
 				52D3E4FF251541B700B637CD /* main.swift in Sources */,
+				529811472541C0E800580D2B /* NaiveCache.swift in Sources */,
 				52366139253FAAC500BAF427 /* Styleable.swift in Sources */,
 				52E117962516AC88000114CF /* UITableView+Rx.swift in Sources */,
 				52366130253F9C7900BAF427 /* FirsViewController.swift in Sources */,
