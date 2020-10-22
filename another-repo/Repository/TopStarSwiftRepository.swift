@@ -3,21 +3,17 @@ import RxSwift
 
 typealias TopStartSwiftResponse = (repositories: TopStarSwiftModel, nextURL: URL?)
 
-final class TopStarSwiftRepository:
-TopStarSwiftFetchable,
-RepositoryOperationScheduable {
-	
-	var scheduler: OperationQueueScheduler {
-		let operationQueue = OperationQueue()
-		operationQueue.maxConcurrentOperationCount = 2
-		operationQueue.qualityOfService = QualityOfService.userInitiated
-		return OperationQueueScheduler(operationQueue: operationQueue)
-	}
+final class TopStarSwiftRepository: TopStarSwiftFetchable {
 
 	private let parser: WebLinkParseable
+	private let repositoryOperation: RepositoryOperationScheduable
 	
-	init(parser: WebLinkParseable = NextURLParser()) {
+	init(
+		parser: WebLinkParseable,
+		repositoryOperation: RepositoryOperationScheduable
+	) {
 		self.parser = parser
+		self.repositoryOperation = repositoryOperation
 	}
 	
 	func fetchTopSwiftStarRepos(
@@ -27,7 +23,7 @@ RepositoryOperationScheduable {
 		
 		return URLSession.shared.rx
 			.response(request: URLRequest(url: URL))
-			.observeOn(scheduler)
+			.observeOn(repositoryOperation.scheduler)
 			.map { [weak self] response -> TopStartSwiftResponse in
 				let topStartSwiftModel = try JSONDecoder().decode(TopStarSwiftModel.self, from: response.data)
 				let URL = try self?.parser.parse(response.0)

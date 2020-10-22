@@ -2,10 +2,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class TopSwiftReposViewController:
-UIViewController,
-UIScrollViewDelegate {
+final class TopSwiftReposViewController: UIViewController {
 	
+	typealias Constants = TopSwiftReposViewModel.Constants
 	typealias Input = TopSwiftReposViewModel.Input
 	
 	private let viewModel: TopSwiftReposViewModel
@@ -38,7 +37,7 @@ UIScrollViewDelegate {
 	}(UITableView())
 	
 	init(
-		viewModel: TopSwiftReposViewModel = TopSwiftReposViewModel()
+		viewModel: TopSwiftReposViewModel
 	) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
@@ -104,8 +103,8 @@ UIScrollViewDelegate {
 		let output = viewModel.transform(input: intput)
 
 		let configureCell = { (tableView: UITableView, row: Int, viewModel: TopStarSwiftRepositoryTableViewCellModel) -> UITableViewCell in
-			let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell") as? TopStarSwiftRepositoryTableViewCell ??
-				TopStarSwiftRepositoryTableViewCell(style: .default, reuseIdentifier: "RepositoryCell")
+			let cell = tableView.dequeueReusableCell(withIdentifier: Constants.repositoryCellIdentifier) as? TopStarSwiftRepositoryTableViewCell ??
+				TopStarSwiftRepositoryTableViewCell(style: .default, reuseIdentifier: Constants.repositoryCellIdentifier)
 			
 			cell.configureWith(viewModel)
 			

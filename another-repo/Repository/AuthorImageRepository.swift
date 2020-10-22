@@ -1,25 +1,21 @@
 import Foundation
 import RxSwift
 
-final class AuthorImageRepository:
-AuthorImageFetchable,
-RepositoryOperationScheduable {
+final class AuthorImageRepository: AuthorImageFetchable {
 	
-	var scheduler: OperationQueueScheduler {
-		let operationQueue = OperationQueue()
-		operationQueue.maxConcurrentOperationCount = 2
-		operationQueue.qualityOfService = QualityOfService.userInitiated
-		return OperationQueueScheduler(operationQueue: operationQueue)
+	private let repositoryOperation: RepositoryOperationScheduable
+	
+	init(repositoryOperation: RepositoryOperationScheduable) {
+		self.repositoryOperation = repositoryOperation
 	}
 	
 	func fetchImage(
 		_ URL: URL?
 	) -> Observable<Data> {
 		guard let URL = URL else { return .empty() }
-		
 		return URLSession.shared.rx
 			.response(request: URLRequest(url: URL))
-			.observeOn(scheduler)
+			.observeOn(repositoryOperation.scheduler)
 			.map { $0.data }
 	}
 }

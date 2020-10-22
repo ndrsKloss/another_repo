@@ -11,8 +11,16 @@ final class TopSwiftReposCoordinator: Coordinatable {
 	}
 	
 	func start() {
+		let repository = TopStarSwiftRepository(
+			parser: NextURLParser(),
+			repositoryOperation: RepositoryOperation()
+		)
+		
+		let viewModel = TopSwiftReposViewModel(repository: repository)
+		let viewController = TopSwiftReposViewController(viewModel: viewModel)
+		
 		navigationController.pushViewController(
-			TopSwiftReposViewController(),
+			viewController,
 			animated: true
 		)
 	}

@@ -5,6 +5,10 @@ import RxSwiftExt
 
 final class TopSwiftReposViewModel: ViewModelType {
 	
+	struct Constants {
+		static let repositoryCellIdentifier = "RepositoryCell"
+	}
+	
 	struct Input {
 		let viewWillAppear: ControlEvent<Bool>
 		let retryTap: ControlEvent<Void>
@@ -23,7 +27,7 @@ final class TopSwiftReposViewModel: ViewModelType {
 	private var nextURL: URL?
 	private var repositories = [TopStarSwiftModel.Repository]()
 	
-	init(repository: TopStarSwiftFetchable = TopStarSwiftRepository()) {
+	init(repository: TopStarSwiftFetchable) {
 		self.repository = repository
 	}
 	
@@ -34,7 +38,7 @@ final class TopSwiftReposViewModel: ViewModelType {
 		let errorTracker = ErrorTracker()
 		
 		let firstReposPage = Observable.merge(
-			input.viewWillAppear.map { _ in () },
+			input.viewWillAppear.mapTo(()),
 			input.retryTap.asObservable()
 			)
 			.flatMapLatest { [fetchRepos] _ in
@@ -53,8 +57,12 @@ final class TopSwiftReposViewModel: ViewModelType {
 			.map { [unwrapResponse] in try unwrapResponse($0) }
 			.unwrap()
 		
+		// Bulky, I know...
 		let repositories = Observable.merge(firstReposPage, succReposPage)
-			.map { $0.map { TopStarSwiftRepositoryTableViewCellModel($0) } }
+			.map { $0.map { repository -> TopStarSwiftRepositoryTableViewCellModel in
+				let authorRepository = AuthorImageRepository(repositoryOperation: RepositoryOperation())
+				return TopStarSwiftRepositoryTableViewCellModel(repository: authorRepository, repository)
+			} }
 			.asDriver(onErrorJustReturn: [])
 		
 		let normalLoad = firstReposPageTracker
@@ -62,11 +70,11 @@ final class TopSwiftReposViewModel: ViewModelType {
 			.asDriver(onErrorJustReturn: false)
 		
 		let success = repositories
-			.map { _ in Void() }
+			.mapTo(())
 			.asDriver(onErrorDriveWith: .empty())
 		
 		let errorContent = errorTracker
-			.map { _ in TopStarSwiftRepositoryErrorContent.init() }
+			.mapTo(TopStarSwiftRepositoryErrorContent())
 			.asDriver(onErrorDriveWith: .empty())
 		
 		return Output(

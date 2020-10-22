@@ -3,6 +3,7 @@ import RxSwift
 
 final class TopStarSwiftRepositoryTableViewCell: UITableViewCell {
 	
+	typealias Constants = TopStarSwiftRepositoryTableViewCellModel.Constants
 	typealias Input = TopStarSwiftRepositoryTableViewCellModel.Input
 	
 	private var disposeBag = DisposeBag()
@@ -36,7 +37,7 @@ final class TopStarSwiftRepositoryTableViewCell: UITableViewCell {
 	}(UILabel())
 	
 	private let starImageView: UIImageView = {
-		$0.image = UIImage(named: "ic_star")
+		$0.image = UIImage(String: Constants.starImage)
 		$0.tintColor = .darkGray
 		$0.contentMode = .scaleAspectFit
 		$0.translatesAutoresizingMaskIntoConstraints = false

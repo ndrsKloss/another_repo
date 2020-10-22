@@ -1,9 +1,9 @@
 import UIKit
 
-typealias Constants = FirstViewModel.Constants
-typealias Input = FirstViewModel.Input
-
 final class FirstViewController: UIViewController {
+	
+	typealias Constants = FirstViewModel.Constants
+	typealias Input = FirstViewModel.Input
 	
 	private let viewModel: FirstViewModel
 	

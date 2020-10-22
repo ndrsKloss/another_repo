@@ -4,6 +4,10 @@ import RxCocoa
 final class TopStarSwiftRepositoryTableViewCellModel:
 ViewModelType {
 	
+	struct Constants {
+		static let starImage = "ic_star"
+	}
+	
 	struct Input { }
 	
 	struct Output {
@@ -23,7 +27,7 @@ ViewModelType {
 	let avatarURL: String
 	
 	init(
-		repository: AuthorImageFetchable = AuthorImageRepository(),
+		repository: AuthorImageFetchable,
 		_ gitHubrepository: TopStarSwiftModel.Repository
 	) {
 		self.repository = repository

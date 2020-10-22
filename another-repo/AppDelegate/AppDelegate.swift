@@ -2,7 +2,7 @@ import UIKit
 
 class AppDelegate:
 	UIResponder,
-UIApplicationDelegate {
+	UIApplicationDelegate {
 	
 	private var services: [UIApplicationDelegate]
 	
