@@ -27,7 +27,7 @@
 		52D3E4E0251530C000B637CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D3E4DF251530C000B637CD /* Assets.xcassets */; };
 		52D3E4E6251530C000B637CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D3E4E4251530C000B637CD /* LaunchScreen.storyboard */; };
 		52D3E4FF251541B700B637CD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4FE251541B700B637CD /* main.swift */; };
-		52D3E5052515446700B637CD /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E5042515446700B637CD /* CoordinatorProtocol.swift */; };
+		52D3E5052515446700B637CD /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E5042515446700B637CD /* Coordinatable.swift */; };
 		52D3E5072515448800B637CD /* TopSwiftReposCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E5062515448800B637CD /* TopSwiftReposCoordinator.swift */; };
 		52D3E50A25154D8A00B637CD /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E50925154D8A00B637CD /* ViewModelType.swift */; };
 		52D3E50C25154DE600B637CD /* TopSwiftReposViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E50B25154DE600B637CD /* TopSwiftReposViewModel.swift */; };
@@ -85,7 +85,7 @@
 		52D3E4F2251530C000B637CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52D3E4FC2515419A00B637CD /* TestSortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSortcut.swift; sourceTree = "<group>"; };
 		52D3E4FE251541B700B637CD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		52D3E5042515446700B637CD /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		52D3E5042515446700B637CD /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		52D3E5062515448800B637CD /* TopSwiftReposCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSwiftReposCoordinator.swift; sourceTree = "<group>"; };
 		52D3E50925154D8A00B637CD /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		52D3E50B25154DE600B637CD /* TopSwiftReposViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSwiftReposViewModel.swift; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 		52D3E5082515498300B637CD /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				52D3E5042515446700B637CD /* CoordinatorProtocol.swift */,
+				52D3E5042515446700B637CD /* Coordinatable.swift */,
 				52D3E510251563DC00B637CD /* RepositoryProtocol.swift */,
 				5236612C253E6D6800BAF427 /* RepositoryOperationScheduable.swift */,
 				52366138253FAAC500BAF427 /* Styleable.swift */,
@@ -514,7 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52D3E4DA251530BC00B637CD /* AppDelegate.swift in Sources */,
-				52D3E5052515446700B637CD /* CoordinatorProtocol.swift in Sources */,
+				52D3E5052515446700B637CD /* Coordinatable.swift in Sources */,
 				5236613E253FB4AF00BAF427 /* UIColor+Another-Repo.swift in Sources */,
 				5236612B253E3B2800BAF427 /* WebLinkParseable.swift in Sources */,
 				5236613C253FAD3200BAF427 /* UIButton+Styleable.swift in Sources */,

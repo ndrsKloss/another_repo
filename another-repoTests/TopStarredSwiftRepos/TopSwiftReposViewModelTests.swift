@@ -22,35 +22,6 @@ XCTestCase {
 		
 		let input = TopSwiftReposViewModel.Input(
 			viewWillAppear: .init(events: viewWillAppear),
-			pullToRefresh: .init(events: Observable<Void>.empty()),
-			retryTap: .init(events: Observable<Void>.empty()),
-			nearBottom: .empty()
-		)
-		
-		let output = sut.transform(input: input)
-		
-		output
-			.repositories
-			.drive(cellsViewModels)
-			.disposed(by: fields.disposeBag)
-		
-		fields.scheduler.start()
-		
-		XCTAssertEqual(cellsViewModels.events, [.next(0, [fields.cellViewModel])])
-	}
-	
-	func test_when_pullToRefresh_is_triggered() {
-		let (sut, fields) = makeSut()
-		
-		let cellsViewModels = fields.scheduler.createObserver([TopStarSwiftRepositoryTableViewCellModel].self)
-		
-		let pullToRefresh = fields.scheduler.createHotObservable(
-			[.next(0, Void())]
-		)
-		
-		let input = TopSwiftReposViewModel.Input(
-			viewWillAppear: .init(events: Observable<Bool>.empty()),
-			pullToRefresh: .init(events: pullToRefresh),
 			retryTap: .init(events: Observable<Void>.empty()),
 			nearBottom: .empty()
 		)
@@ -72,22 +43,17 @@ XCTestCase {
 		
 		let cellsViewModels = fields.scheduler.createObserver([TopStarSwiftRepositoryTableViewCellModel].self)
 		
-		let viewWillAppear = fields.scheduler.createColdObservable(
+		let viewWillAppear = fields.scheduler.createHotObservable(
 			[.next(0, true)]
 		)
 		
-		let nearBottom = fields.scheduler.createColdObservable(
-			[
-				.next(0, Void()),
-				.next(0, Void()),
-				.next(10, Void())
-			]
+		let nearBottom = fields.scheduler.createHotObservable(
+			[.next(10, Void())]
 		)
 			.asSignal(onErrorJustReturn: ())
 		
 		let input = TopSwiftReposViewModel.Input(
 			viewWillAppear: .init(events: viewWillAppear),
-			pullToRefresh: .init(events: Observable<Void>.empty()),
 			retryTap: .init(events: Observable<Void>.empty()),
 			nearBottom: nearBottom
 		)
@@ -103,7 +69,7 @@ XCTestCase {
 		
 		XCTAssertEqual(cellsViewModels.events, [
 			.next(0, [fields.cellViewModel]),
-			.next(10, [fields.cellViewModel])
+			.next(10, [fields.cellViewModel, fields.cellViewModel])
 		])
 	}
 }
@@ -136,7 +102,7 @@ extension TopSwiftReposViewModelTests {
 			let disposeBag = DisposeBag()
 			
 			let cellViewModel = TopStarSwiftRepositoryTableViewCellModel(makeRepository())
-
+			
 			return (sut, (scheduler, disposeBag, cellViewModel))
 	}
 }
