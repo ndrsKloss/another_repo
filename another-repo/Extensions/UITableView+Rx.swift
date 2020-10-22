@@ -18,7 +18,7 @@ extension Reactive where Base: UITableView {
 		return self.contentOffset
 			.asDriver()
 			.flatMap { _ in
-				if isNearBottomEdge(tableView: self.base, edgeOffset: 20.0) { return .just(()) }
+				if isNearBottomEdge(tableView: self.base) { return .just(()) }
 				return .empty()
 			}
 	}
