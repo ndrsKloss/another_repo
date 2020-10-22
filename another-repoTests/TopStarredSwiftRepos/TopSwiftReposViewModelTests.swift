@@ -22,6 +22,7 @@ XCTestCase {
 		
 		let input = TopSwiftReposViewModel.Input(
 			viewWillAppear: .init(events: viewWillAppear),
+			itemSelected: .init(events: Observable<IndexPath>.empty()),
 			retryTap: .init(events: Observable<Void>.empty()),
 			nearBottom: .empty()
 		)
@@ -35,7 +36,7 @@ XCTestCase {
 		
 		fields.scheduler.start()
 		
-		XCTAssertEqual(cellsViewModels.events, [.next(0, [fields.cellViewModel])])
+		XCTAssertEqual(cellsViewModels.events, [.next(0, [fields.cellViewModel]), .completed(0)])
 	}
 	
 	func test_when_nearBottom_is_triggered() {
@@ -54,6 +55,7 @@ XCTestCase {
 		
 		let input = TopSwiftReposViewModel.Input(
 			viewWillAppear: .init(events: viewWillAppear),
+			itemSelected: .init(events: Observable<IndexPath>.empty()),
 			retryTap: .init(events: Observable<Void>.empty()),
 			nearBottom: nearBottom
 		)
@@ -83,12 +85,17 @@ extension TopSwiftReposViewModelTests {
 	)
 	
 	
-	final class TopStarSwiftRepositoryMock:
-	TopStarSwiftFetchable {
+	final class TopStarSwiftRepositoryMock: TopStarSwiftFetchable {
 		func fetchTopSwiftStarRepos(
 			_ URL: URL?
 		) -> Observable<TopStartSwiftResponse> {
 			.just((makeTopStarSwiftModel(), nil))
+		}
+	}
+	
+	final class AuthorImageFetchMock: AuthorImageFetchable {
+		func fetchImage(_ URL: URL?) -> Observable<Data> {
+			.empty()
 		}
 	}
 	
@@ -101,7 +108,7 @@ extension TopSwiftReposViewModelTests {
 			let scheduler = TestScheduler(initialClock: 0)
 			let disposeBag = DisposeBag()
 			
-			let cellViewModel = TopStarSwiftRepositoryTableViewCellModel(makeRepository())
+			let cellViewModel = TopStarSwiftRepositoryTableViewCellModel(repository: AuthorImageFetchMock(), makeRepository())
 			
 			return (sut, (scheduler, disposeBag, cellViewModel))
 	}
@@ -114,6 +121,7 @@ private func makeRepository() -> TopStarSwiftModel.Repository {
 	)
 	
 	let repo = TopStarSwiftModel.Repository(
+		id: 21700699,
 		name: "awesome-ios",
 		owner: owner,
 		description: "A curated list of awesome iOS ecosystem, including Objective-C and Swift Projects",

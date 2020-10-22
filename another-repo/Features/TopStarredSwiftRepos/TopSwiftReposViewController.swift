@@ -96,6 +96,7 @@ final class TopSwiftReposViewController: UIViewController {
 	private func bind() {
 		let intput = Input(
 			viewWillAppear: rx.viewWillAppear,
+			itemSelected: tableView.rx.itemSelected,
 			retryTap: errorView.button.rx.tap,
 			nearBottom: tableView.rx.nearBottom
 		)

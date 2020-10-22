@@ -5,12 +5,17 @@ import RxSwiftExt
 
 final class TopSwiftReposViewModel: ViewModelType {
 	
+	enum Destination {
+        case last
+    }
+	
 	struct Constants {
 		static let repositoryCellIdentifier = "RepositoryCell"
 	}
 	
 	struct Input {
 		let viewWillAppear: ControlEvent<Bool>
+		let itemSelected: ControlEvent<IndexPath>
 		let retryTap: ControlEvent<Void>
 		let nearBottom: Signal<Void>
 	}
@@ -23,7 +28,15 @@ final class TopSwiftReposViewModel: ViewModelType {
 		let errorContent: Driver<TopStarSwiftRepositoryErrorContent>
 	}
 	
+	var navigation: Driver<Pilot<Destination>> {
+		navigationPublisher.asDriverOnErrorJustComplete()
+    }
+	
 	private let repository: TopStarSwiftFetchable
+	private let navigationPublisher = PublishSubject<Pilot<Destination>>()
+	private let disposeBag = DisposeBag()
+	
+	// Side effects
 	private var nextURL: URL?
 	private var repositories = [TopStarSwiftModel.Repository]()
 	
@@ -38,7 +51,7 @@ final class TopSwiftReposViewModel: ViewModelType {
 		let errorTracker = ErrorTracker()
 		
 		let firstReposPage = Observable.merge(
-			input.viewWillAppear.mapTo(()),
+			input.viewWillAppear.take(1).mapTo(()),
 			input.retryTap.asObservable()
 			)
 			.flatMapLatest { [fetchRepos] _ in
@@ -64,6 +77,14 @@ final class TopSwiftReposViewModel: ViewModelType {
 				return TopStarSwiftRepositoryTableViewCellModel(repository: authorRepository, repository)
 			} }
 			.asDriver(onErrorJustReturn: [])
+		
+		input.itemSelected
+			.map { [weak self] in self?.repositories[$0.row] }
+			.unwrap()
+			.map { $0.id }
+			.map { .init(destination: .last, luggage: "\($0)") }
+			.bind(to: navigationPublisher)
+			.disposed(by: disposeBag)
 		
 		let normalLoad = firstReposPageTracker
 			.filter { $0 }

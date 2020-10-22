@@ -23,6 +23,9 @@
 		5236613E253FB4AF00BAF427 /* UIColor+Another-Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236613D253FB4AF00BAF427 /* UIColor+Another-Repo.swift */; };
 		52366140253FBDB000BAF427 /* EndpointsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236613F253FBDB000BAF427 /* EndpointsRepository.swift */; };
 		5290C32E25411AF40084E706 /* RepositoryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5290C32D25411AF40084E706 /* RepositoryOperation.swift */; };
+		529811412541B41C00580D2B /* LastCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529811402541B41C00580D2B /* LastCoordinator.swift */; };
+		529811432541B44B00580D2B /* LastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529811422541B44B00580D2B /* LastViewController.swift */; };
+		529811452541B45E00580D2B /* LastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529811442541B45E00580D2B /* LastViewModel.swift */; };
 		52D3E4DA251530BC00B637CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4D9251530BC00B637CD /* AppDelegate.swift */; };
 		52D3E4DE251530BC00B637CD /* TopSwiftReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3E4DD251530BC00B637CD /* TopSwiftReposViewController.swift */; };
 		52D3E4E0251530C000B637CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D3E4DF251530C000B637CD /* Assets.xcassets */; };
@@ -77,6 +80,9 @@
 		5236613D253FB4AF00BAF427 /* UIColor+Another-Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Another-Repo.swift"; sourceTree = "<group>"; };
 		5236613F253FBDB000BAF427 /* EndpointsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointsRepository.swift; sourceTree = "<group>"; };
 		5290C32D25411AF40084E706 /* RepositoryOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryOperation.swift; sourceTree = "<group>"; };
+		529811402541B41C00580D2B /* LastCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastCoordinator.swift; sourceTree = "<group>"; };
+		529811422541B44B00580D2B /* LastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewController.swift; sourceTree = "<group>"; };
+		529811442541B45E00580D2B /* LastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewModel.swift; sourceTree = "<group>"; };
 		52D3E4D6251530BC00B637CD /* another-repo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "another-repo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D3E4D9251530BC00B637CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D3E4DD251530BC00B637CD /* TopSwiftReposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSwiftReposViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +176,16 @@
 			path = First;
 			sourceTree = "<group>";
 		};
+		5298113F2541B40C00580D2B /* Last */ = {
+			isa = PBXGroup;
+			children = (
+				529811402541B41C00580D2B /* LastCoordinator.swift */,
+				529811422541B44B00580D2B /* LastViewController.swift */,
+				529811442541B45E00580D2B /* LastViewModel.swift */,
+			);
+			path = Last;
+			sourceTree = "<group>";
+		};
 		52D3E4CD251530BC00B637CD = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +256,7 @@
 			children = (
 				5236612E253F9C5C00BAF427 /* First */,
 				52D3E503251542DF00B637CD /* TopStarredSwiftRepos */,
+				5298113F2541B40C00580D2B /* Last */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -517,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52D3E4DA251530BC00B637CD /* AppDelegate.swift in Sources */,
+				529811432541B44B00580D2B /* LastViewController.swift in Sources */,
 				52D3E5052515446700B637CD /* Coordinatable.swift in Sources */,
 				5236613E253FB4AF00BAF427 /* UIColor+Another-Repo.swift in Sources */,
 				5236612B253E3B2800BAF427 /* WebLinkParseable.swift in Sources */,
@@ -540,10 +558,12 @@
 				52E117A32516E852000114CF /* Observable+Extension.swift in Sources */,
 				52D3E511251563DC00B637CD /* RepositoryProtocol.swift in Sources */,
 				5236612D253E6D6800BAF427 /* RepositoryOperationScheduable.swift in Sources */,
+				529811412541B41C00580D2B /* LastCoordinator.swift in Sources */,
 				52D3E5132515654800B637CD /* TopStarSwiftRepository.swift in Sources */,
 				52D3E4DE251530BC00B637CD /* TopSwiftReposViewController.swift in Sources */,
 				5290C32E25411AF40084E706 /* RepositoryOperation.swift in Sources */,
 				52E1179C2516E79A000114CF /* ActivityIndicator.swift in Sources */,
+				529811452541B45E00580D2B /* LastViewModel.swift in Sources */,
 				52D3E50A25154D8A00B637CD /* ViewModelType.swift in Sources */,
 				521BF7DA2516FD3E005C0153 /* TopStarSwiftRepositoryErrorView.swift in Sources */,
 				52E117982516C2E3000114CF /* AuthorImageRepository.swift in Sources */,
